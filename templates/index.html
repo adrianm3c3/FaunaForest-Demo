@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <style>
+      
+    body, html {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .button:hover {
+      opacity: 0.7; 
+    }
+
+    .popup-menu {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 120px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        padding: 10px;
+        z-index: 1;
+    }
+
+    .popup-menu a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .popup-menu a:hover {
+        background-color: #ddd; 
+    }
+
+    .button-container {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+    } 
+
+.toast-panel {
+    position: fixed;
+    bottom: 125px;
+    left: 90px;
+    width: 490px; /* Adjust as needed */
+    height: 380px; /* Adjust as needed */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 3;
+}
+
+.toast-message {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.toast-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping */
+    max-width: 480px; 
+}
+
+.toast-button {
+    margin-right: 10px;
+    margin-bottom: 10px; /* Add margin between rows */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toast-button:last-child {
+    margin-right: 0;
+}
+
+#decisionTree {
+    /* border: 2px solid black; */
+    padding: 10px; 
+    height: 550px;
+    width: 720px;
+  }
+
+.level-container {
+    /* border: 1px solid gray; */
+    
+    height: 137.5px;
+    width: 720px;
+    display: flex; /* Use flexbox layout */
+    flex-direction: row; /* Stack items horizontally */
+    align-items: center; /* Center items vertically */
+    /*justify-content: center; /* Center items horizontally */ 
+    justify-content: space-around; /* Distribute items evenly with space between */
+
+}
+
+.textbox {
+    margin: 5px; 
+    border: 1px solid darkgreen;
+    width: 80px;
+    height: 80px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+.yesBranch {
+  margin: 5px; 
+  /*border: 1px solid black; */
+  width: 0px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  transform: rotate(-45deg); /* Apply rotation */
+
+}
+.noBranch {
+  margin: 5px; 
+  /*border: 1px solid black; */
+  width: 0px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  transform: rotate(45deg); /* Apply rotation */
+}
+
+.glowing-textbox {
+    transition: box-shadow 0.5s ease-in-out; /* Smooth transition for box-shadow */
+}
+
+
+.text-inside { /* text inside decision node */
+    position: absolute; /* Position the text absolutely */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) rotate(-45deg); /* Rotate and center the text */
+    transform-origin: center; /* Rotate around the center of the text */
+}
+
+  </style>
+</head>
+<body>
+  <script src="http://127.0.0.1:8000/static/jsFiles/treeBuilder.js">//script to hold tree data</script>
+  <script src="http://127.0.0.1:8000/static/jsFiles/testAccuracy.js"></script>
+  <script src="http://127.0.0.1:8000/static/jsFiles/loadAnimals.js">//load animals</script>
+  <script src="http://127.0.0.1:8000/static/jsFiles/defineSplitUI.js">//defining splits</script>
+
+
+  <div style="width: 100vw; height: 100vh; position: relative; background-color: #87ffbf">
+
+    <img style="width: 100%; height: 100%; left: 0; top: 0; position: absolute" src="http://127.0.0.1:8000/static/backgroundcolorgreen.png" />
+    
+    <img style="width: 37%; height: 45%; left: 60%; top: 26%; position: absolute; opacity: 0.3;" src="http://127.0.0.1:8000/static/forest.png" />
+
+    <img style="width: 28.75%; height: 37%; left: 35%; top: -11%; position: absolute" src="http://127.0.0.1:8000/static/randomforesttittle.png" />
+
+    <img style="width: 34.8%; height: 39%; left: 63%; top: -10%; position: absolute" src="http://127.0.0.1:8000/static/TreeBuilder.png" />
+
+    <img style="width: 42.66%; height: 40%; left: 3.8%; top: -10%; position: absolute" src="http://127.0.0.1:8000/static/datasets.png" />
+
+    <img id="treeBuilderOutline" style="width: 100%; height: 105%; left: 10%; top: -8%; position: absolute" src="http://127.0.0.1:8000/static/boxcolor.png" /> 
+
+    <img id="datasetsOutline" style="width: 1100px; height: 250px; left: -320px; top: 75px; position: absolute" src="http://127.0.0.1:8000/static/boxcolor.png" /> 
+  
+    <p id="text" style="z-index: 2; position: absolute; top: 15%; left: 7%; width: 35%; height: 50%; font-size: 24px;"></p>
+    
+    <a href="#"><img id = "nextTree" class="button" style="width: 18.4%; height: 9%; left: 40%; top: 87%; position: absolute; " src="http://127.0.0.1:8000/static/nexttree.png" onclick="nextTree()" /></a> 
+
+    <a href="#">
+    <img id="testAccuracy" class="button" style="width: 26.5%; height: 9%; left: 70%; top: 87%; position: absolute" src="http://127.0.0.1:8000/static/testaccuracy.png" onclick="classifyAnimals();" />
+</a>
+
+
+    <a href="#">
+      <img id="defineSplit" class="button" style="width: 18.4%; height: 9%; left: 10%; top: 87%; position: absolute" src="http://127.0.0.1:8000/static/definesplitbutton.png" onclick="createToast()" />
+    </a>
+
+
+    <script>
+      displayRandomAnimals();
+    </script>
+
+
+  <div id="output" style="position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%); font-size: 24px;"></div>
+  </div>
+
+  <div id="defineSplitMenu" class="popup-menu" style="top: -8%; left: 10%; transform: translate(-50%, -50%);">
+    <a href="#">Option 1</a>
+    <a href="#">Option 2</a>
+    <a href="#">Option 3</a>
+  </div>
+
+  <div id="decisionTree" style="position: absolute; top: 50%; left: 71%; transform: translate(-50%, -50%);" >
+    <div id="level-1" class="level-container">
+      <div class="textbox" id = "node1" style = "background-color: #006400;"> </div>
+    </div>
+
+    <div id="level-2" class="level-container">
+      <div class="textbox" id = "node2"> </div>
+      <div class="textbox" id = "node3"> </div>
+    </div>
+
+    <div id="level-3" class="level-container">
+      <div class="textbox" id = "node4"> </div>
+      <div class="textbox" id = "node5"> </div>
+      <div class="textbox" id = "node6"> </div>
+      <div class="textbox" id = "node7"> </div>
+    </div>
+
+    <div id="level-4" class="level-container">
+      <div class="textbox" id = "node8"> </div>
+      <div class="textbox" id = "node9"> </div>
+      <div class="textbox" id = "node10"> </div>
+      <div class="textbox" id = "node11"> </div>
+      <div class="textbox" id = "node12"> </div>
+      <div class="textbox" id = "node13"> </div>
+      <div class="textbox" id = "node14"> </div>
+      <div class="textbox" id = "node15"> </div>
+    </div>
+  </div>
+
+  <div id="branches" style="position: absolute; top: 50%; left: 71%; transform: translate(-50%, -50%);" >
+
+    <div id="branches1" class="level-container">
+      <div class="noBranch" id = "branch1" style = "background-color: #87ffbf; height: 120px; transform: rotate(70deg); margin-left: 150px;"> </div>
+      <div class="yesBranch" id = "branch2" style = "background-color: #87ffbf; height: 120px; transform: rotate(-70deg); margin-right: 150px;"> </div>
+    </div>
+
+    <div id="branches2" class="level-container">
+      <div class="noBranch" id = "branch3" style = "background-color: #87ffbf; height: 90px; transform: rotate(55deg); margin-left: 90px;"> </div>
+      <div class="yesBranch" id = "branch4" style = "background-color: #87ffbf; height: 90px; transform: rotate(-55deg); margin-right: 90px;"> </div>
+      <div class="noBranch" id = "branch5" style = "background-color: #87ffbf; height: 90px; transform: rotate(55deg); margin-left: 90px; " > </div>
+      <div class="yesBranch" id = "branch6" style = "background-color: #87ffbf; height: 90px; transform: rotate(-55deg); margin-right: 90px;"> </div>
+    </div>
+
+    <div id="branches3" class="level-container">
+      <div class="noBranch" id = "branch7" style = "background-color: #87ffbf; height: 70px; transform: rotate(45deg);"> </div>
+      <div class="yesBranch" id = "branch8" style = "background-color: #87ffbf; height: 70px; transform: rotate(-45deg); "> </div>
+      <div class="noBranch" id = "branch9" style = "background-color: #87ffbf; height: 70px; transform: rotate(45deg); "> </div>
+      <div class="yesBranch" id = "branch10" style = "background-color: #87ffbf; height: 70px; transform: rotate(-45deg); "> </div>
+      <div class="noBranch" id = "branch11" style = "background-color: #87ffbf; height: 70px; transform: rotate(45deg);"> </div>
+      <div class="yesBranch" id = "branch12" style = "background-color: #87ffbf; height: 70px; transform: rotate(-45deg); "> </div>
+      <div class="noBranch" id = "branch13" style = "background-color: #87ffbf; height: 70px; transform: rotate(45deg);"> </div>
+      <div class="yesBranch" id = "branch14" style = "background-color: #87ffbf; height: 70px; transform: rotate(-45deg); "> </div>
+    </div>
+
+  </div>
+
+  
+<script>
+  const initialContent = document.documentElement.outerHTML;
+</script>
+
+</body>
+</html>
