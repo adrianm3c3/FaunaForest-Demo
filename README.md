@@ -19,7 +19,7 @@ Instead of explaining AI only through lectures or formulas, FaunaForest lets stu
   </tr>
 </table>
 
-### 🎮 Gameplay Demo
+### 🎮 Gameplay Screen
 
 <p align="center">
   <img src="screenshots/GameDemo.gif" width="800">
