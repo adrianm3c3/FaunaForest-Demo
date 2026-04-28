@@ -1,5 +1,0 @@
-Name: hello W
-Grade level: 6
-20240409155625, Level 1, 100
-20240409155636, Level 2, 100
-20240409155740, Level 3, 0

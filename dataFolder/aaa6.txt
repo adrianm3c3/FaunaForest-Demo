@@ -1,3 +1,0 @@
-Name: aa a
-Grade level: 6
-Identifier, Grade, Timestamp, Seconds Spent on Puzzle, Level, Accuracy, Number of Puzzles

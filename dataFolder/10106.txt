@@ -1,8 +1,0 @@
-Name: 10 10
-Grade level: 6
-Identifier, Grade, Timestamp, Level, Accuracy, Number of Puzzles
-
-1010, 6, 2024-04-15 10:52:55,3, Level 1, 0, -1
-1010, 6, 2024-04-15 10:53:02,4, Level 2, 0, -1
-1010, 6, 2024-04-15 10:53:09,5, Level 3, 0, 1
-1010, 6, 2024-04-15 10:53:34,30, Level 3, 0, -1

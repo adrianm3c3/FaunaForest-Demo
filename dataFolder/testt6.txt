@@ -1,7 +1,0 @@
-Name: test t
-Grade level: 6
-Identifier, Grade, Timestamp, Seconds Spent on Puzzle, Level, Accuracy, Number of Puzzles
-
-testt, 6, 2024-04-17 21:45:26,96, Level 1, 100, -1
-testt, 6, 2024-04-17 22:03:49,33, Level 1, 100, -1
-testt, 6, 2024-04-17 22:04:15,23, Level 1, 0, -1

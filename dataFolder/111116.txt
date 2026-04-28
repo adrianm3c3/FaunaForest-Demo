@@ -1,7 +1,0 @@
-Name: 111 11
-Grade level: 6
-Identifier, Grade, Timestamp, Seconds Spent on Puzzle, Level, Accuracy, Number of Puzzles
-
-11111, 6, 2024-04-15 11:31:28,6, Level 1, 0, -1
-11111, 6, 2024-04-15 11:31:42,13, Level 2, 0, -1
-11111, 6, 2024-04-15 11:32:14,30, Level 3, 0, -1

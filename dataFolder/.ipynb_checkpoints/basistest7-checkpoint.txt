@@ -1,9 +1,0 @@
-Name: basis test
-Grade level: 7
-Identifier, Grade, Timestamp, Seconds Spent on Puzzle, Level, Accuracy, Number of Puzzles
-
-basistest, 7, 2024-04-15 15:22:09,5, Level 1, 100, -1
-basistest, 7, 2024-04-15 15:22:29,19, Level 2, 50, -1
-basistest, 7, 2024-04-15 15:22:39,9, Level 3, 50, 1
-basistest, 7, 2024-04-15 15:22:42,3, Level 3, 0, 2
-basistest, 7, 2024-04-15 15:23:00,30, Level 3, 25, 2

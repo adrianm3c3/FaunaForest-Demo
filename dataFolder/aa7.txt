@@ -1,5 +1,0 @@
-Name: a a
-Grade level: 7
-Identifier, Grade, Timestamp, Seconds Spent on Puzzle, Level, Accuracy, Number of Puzzles
-
-aa, 7, 2024-04-17 20:01:11,11, Level 1, 0, -1
